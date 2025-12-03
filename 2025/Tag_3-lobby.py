@@ -258,7 +258,7 @@ def get_joltage_2(banks):
 print(get_joltage_2(banks_all))
 
 
-# Wowzer, extra:
+# Functino that works for n batterries:
 
 def get_joltage(banks, max_batteries = 12):
     banks = banks.strip().split("\n")
