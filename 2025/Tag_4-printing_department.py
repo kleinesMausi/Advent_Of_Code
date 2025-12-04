@@ -153,7 +153,7 @@ paper_grid_short = '''
 
 #------------Part One------------#
 
-def can_forklift_access_1(grid, target_row, target_col):
+def can_forklift_access(grid, target_row, target_col):
     grid_rows = len(grid)
     grid_cols = len(grid[0])
     adjacent_paper_rolls = 0
@@ -184,7 +184,7 @@ def access_paper_1(grid_blueprint):
     for row_index, grid_row in enumerate(grid):
         for col_index, cell_content in enumerate(grid_row):
             if cell_content == "@":
-                if can_forklift_access_1(grid, row_index, col_index):
+                if can_forklift_access(grid, row_index, col_index):
                     accessible_count += 1
                 
     return accessible_count
@@ -202,7 +202,7 @@ def access_paper_2(grid_blueprint):
         for row_index in range(len(grid)):
             for col_index in range(len(grid[0])):
                 if grid[row_index][col_index] == "@":
-                    if can_forklift_access_2(grid, row_index, col_index):
+                    if can_forklift_access(grid, row_index, col_index):
                         removable_positions.append((row_index, col_index))
         
         if not removable_positions:
@@ -214,27 +214,5 @@ def access_paper_2(grid_blueprint):
     
     return total_removed
 
-def can_forklift_access_2(grid, target_row, target_col):
-    grid_rows = len(grid)
-    grid_cols = len(grid[0])
-    adjacent_paper_rolls = 0
-    
-    neighbor_offsets = [
-        (-1, -1), (-1, 0), (-1, 1),
-        (0, -1),           (0, 1),
-        (1, -1),  (1, 0),  (1, 1)
-    ]
-    
-    for row_offset, col_offset in neighbor_offsets:
-        neighbor_row = target_row + row_offset
-        neighbor_col = target_col + col_offset
-        
-        if 0 <= neighbor_row < grid_rows and 0 <= neighbor_col < grid_cols:
-            if grid[neighbor_row][neighbor_col] == "@":
-                adjacent_paper_rolls += 1
-                if adjacent_paper_rolls >= 4:
-                    return False
-    
-    return True
 
-print(access_paper_2(paper_grid_all))
+print(access_paper_1(paper_grid_all))
