@@ -1,7 +1,4 @@
-
-# "real" dataset
-
-orders = '''R1
+R1
 R25
 R50
 R10
@@ -4577,58 +4574,4 @@ L14
 R10
 L13
 L35
-R47'''
-
-
-# given example, so I have something to accurately compare
-
-order_short = '''L68
-L30
-R48
-L5
-R60
-L55
-L1
-L99
-R14
-L82
-'''
-
-#------------Part One------------#
-
-def rotate(instructions, start = 50):
-    zeros_seen = 0
-    instructions = instructions.strip().split("\n")
-    pos = start
-    for instruction in instructions:
-        direction = 1 if instruction[0] == "R" else -1
-        distance = direction * int(instruction[1:])
-
-        pos = (pos + distance) % 100
-        # print(f"Instruction: {instruction}\nDistance: {distance}\nCurrent Value: {pos}\n========================")
-        if pos == 0:
-            zeros_seen += 1
-
-    return zeros_seen
-
-# print(rotate(orders))
-
-#------------Part Two------------#
-
-def rotate_count_steps(instructions, start = 50):
-    zeros_seen = 0
-    instructions = instructions.strip().split("\n")
-    pos = start
-    for instruction in instructions:
-
-        direction = 1 if instruction[0] == "R" else -1
-        distance = int(instruction[1:])
-
-        for _ in range(abs(distance)):
-            pos = (pos + direction) % 100
-            if pos == 0:
-                zeros_seen += 1
-
-    return zeros_seen
-
-print(rotate_count_steps(orders))
+R47
